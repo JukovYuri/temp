@@ -13,7 +13,7 @@ public class TextQuest : MonoBehaviour
     public Step startStep;
     public Step currentStep;
 
-    public Template currentTemplate;
+    public string currentTemplate;
 
    
     void Start()
@@ -22,43 +22,64 @@ public class TextQuest : MonoBehaviour
         content.text = startStep.content;
         imageBG.sprite = startStep.imageBG;
         imageFace.sprite = startStep.imageFace;
+        content.text = startStep.content;
 
-        startStep.template.gameObject.SetActive(true);
-
-  
         currentStep = startStep;
-        currentTemplate = startStep.template;
+        currentTemplate = currentStep.template.name;
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+
+            switch (currentTemplate)
+            {
+                case "Template_1":
+                    { 
+                        
+                        break;
+                    }
+
+                case "Template_Room":
+                    {
+
+                        break;
+                    }
+                case "Template_Code":
+                    {
+
+                        break;
+                    }
+            }
+
+
+
+
+
+
+
+
+
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SwitchStepEndTemplate(1);
+            imageBG.sprite = currentStep.nextSteps[0].imageBG;
+            imageFace.sprite = currentStep.nextSteps[0].imageFace;
+            content.text = currentStep.nextSteps[0].content;
+
+            currentStep = currentStep.nextSteps[0];
+            
+
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SwitchStepEndTemplate(2);
+            imageBG.sprite = currentStep.nextSteps[1].imageBG;
+            imageFace.sprite = currentStep.nextSteps[1].imageFace;
+            content.text = currentStep.nextSteps[1].content;
+
+            currentStep = currentStep.nextSteps[1];
+
         }
-    }
-
-    public void SwitchStepEndTemplate(int i)
-    {
-        i--;
-        imageBG.sprite = currentStep.nextSteps[i].imageBG;
-        imageFace.sprite = currentStep.nextSteps[i].imageFace;
-        content.text = currentStep.nextSteps[i].content;
-
-        if (currentTemplate != currentStep.nextSteps[i].template)
-        {
-            currentStep.template.gameObject.SetActive(false);
-            currentStep.nextSteps[i].template.gameObject.SetActive(true);
-        }
-
-        currentTemplate = currentStep.nextSteps[i].template;
-
-        currentStep = currentStep.nextSteps[i];
     }
 }

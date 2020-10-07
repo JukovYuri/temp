@@ -8,7 +8,6 @@ public class Step : MonoBehaviour
     [TextArea (10, 50)] public string content;
     public Sprite imageBG;
     public Sprite imageFace;
-
     public Step[] nextSteps;
     public Template template;
 
