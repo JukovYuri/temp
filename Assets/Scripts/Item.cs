@@ -1,0 +1,10 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class Item : MonoBehaviour
+{
+	public Button btItem;
+	public string descriptionItem;
+}

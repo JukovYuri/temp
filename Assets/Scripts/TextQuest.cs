@@ -6,8 +6,12 @@ using UnityEngine.UI;
 
 public class TextQuest : MonoBehaviour
 {
-    public Text content;
-    public Image imageBG;
+    public Text people;
+    public Text descriptionItemUp;
+    public Text descriptionItemDwn;
+    public Text answers;
+
+    public Image imageRoom;
     public Image imageFace;
 
     public Step startStep;
@@ -18,10 +22,9 @@ public class TextQuest : MonoBehaviour
    
     void Start()
     {
-
-        content.text = startStep.content;
-        imageBG.sprite = startStep.imageBG;
-        imageFace.sprite = startStep.imageFace;
+        //content.text = startStep.content;
+        //imageBG.sprite = startStep.imageBG;
+        //imageFace.sprite = startStep.imageFace;
 
         startStep.template.gameObject.SetActive(true);
 
@@ -47,9 +50,14 @@ public class TextQuest : MonoBehaviour
     public void SwitchStepEndTemplate(int i)
     {
         i--;
-        imageBG.sprite = currentStep.nextSteps[i].imageBG;
-        imageFace.sprite = currentStep.nextSteps[i].imageFace;
-        content.text = currentStep.nextSteps[i].content;
+        if (currentStep.inTemplate)
+        {
+            imageRoom.sprite = currentStep.nextSteps[i].spriteRoom;
+            imageFace.sprite = currentStep.nextSteps[i].spriteFace;
+            people.text = currentStep.nextSteps[i].content;
+        }
+
+        
 
         if (currentTemplate != currentStep.nextSteps[i].template)
         {
